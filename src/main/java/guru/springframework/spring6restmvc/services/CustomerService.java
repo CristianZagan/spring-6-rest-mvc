@@ -10,7 +10,8 @@ public interface CustomerService {
     void deleteById(UUID customerId);
 
     List<Customer> listCustomers();
-    Customer getCustomerById(UUID id);
+
+    static Customer getCustomerById(UUID id);
 
     Customer saveNewCustomer(Customer customer);
 
