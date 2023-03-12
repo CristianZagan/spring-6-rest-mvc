@@ -5,13 +5,17 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
-@Builder
+
+
+
+
 @Data
+@Builder
 public class Customer {
+
+    private String name;
     private UUID id;
-    private String customerName;
     private Integer version;
     private LocalDateTime createdDate;
-    private LocalDateTime lastModifiedDate;
-
+    private LocalDateTime updateDate;
 }
