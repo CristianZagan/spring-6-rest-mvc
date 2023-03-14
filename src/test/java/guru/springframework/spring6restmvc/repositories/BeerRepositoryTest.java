@@ -9,8 +9,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 public class BeerRepositoryTest {
+
     @Autowired
     BeerRepository beerRepository;
+
+
 
     @Test
     void testSaveBeer() {
