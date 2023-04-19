@@ -19,7 +19,6 @@ public class BeerServiceJPA implements BeerService {
     private final BeerRepository beerRepository;
     private final BeerMapper beerMapper;
 
-
     @Override
     public List<BeerDTO> listBeers() {
         return beerRepository.findAll()

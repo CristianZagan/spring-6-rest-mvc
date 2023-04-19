@@ -1,10 +1,8 @@
 package guru.springframework.spring6restmvc.bootstrap;
 
-import guru.springframework.spring6restmvc.entitites.Beer;
-import guru.springframework.spring6restmvc.entitites.Customer;
-import guru.springframework.spring6restmvc.model.BeerDTO;
+import guru.springframework.spring6restmvc.entities.Beer;
+import guru.springframework.spring6restmvc.entities.Customer;
 import guru.springframework.spring6restmvc.model.BeerStyle;
-import guru.springframework.spring6restmvc.model.CustomerDTO;
 import guru.springframework.spring6restmvc.repositories.BeerRepository;
 import guru.springframework.spring6restmvc.repositories.CustomerRepository;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +31,7 @@ public class BootstrapData implements CommandLineRunner {
 
         Customer customer1 = Customer.builder()
                 .id(UUID.randomUUID())
-                .name("Customer1")
+                .name("Customer 1")
                 .version(1)
                 .createdDate(LocalDateTime.now())
                 .updateDate(LocalDateTime.now())
@@ -91,9 +89,7 @@ public class BootstrapData implements CommandLineRunner {
                 .updateDate(LocalDateTime.now())
                 .build();
 
-        beerRepository.save(beer1);
-        beerRepository.save(beer2);
-        beerRepository.save(beer3);
+          beerRepository.saveAll(Arrays.asList(beer1, beer2, beer3));
         }
     }
 }

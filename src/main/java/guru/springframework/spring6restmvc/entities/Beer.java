@@ -17,20 +17,20 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Beer {
 
-        @Id
-        @GeneratedValue(generator = "UUID")
-        @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-        @Column(length = 36, columnDefinition = "varchar", updatable = false, nullable = false)
-        private UUID id;
+    @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(length = 36, columnDefinition = "varchar", updatable = false, nullable = false)
+    private UUID id;
 
-        @Version
-        private Integer version;
+    @Version
+    private Integer version;
 
-        private String beerName;
-        private BeerStyle beerStyle;
-        private String upc;
-        private Integer quantityOnHand;
-        private BigDecimal price;
-        private LocalDateTime createdDate;
-        private LocalDateTime updateDate;
+    private String beerName;
+    private BeerStyle beerStyle;
+    private String upc;
+    private Integer quantityOnHand;
+    private BigDecimal price;
+    private LocalDateTime createdDate;
+    private LocalDateTime updateDate;
 }

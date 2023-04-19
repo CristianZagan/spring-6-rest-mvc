@@ -17,7 +17,6 @@ import java.util.UUID;
 @RestController
 public class BeerController {
 
-
     public static final String BEER_PATH = "/api/v1/beer";
     public static final String BEER_PATH_ID = BEER_PATH + "/{beerId}";
 
@@ -48,7 +47,6 @@ public class BeerController {
     }
 
     @PostMapping(BEER_PATH)
-    //@RequestMapping(method = RequestMethod.POST)
     public ResponseEntity handlePost(@RequestBody BeerDTO beer) {
 
         BeerDTO savedBeer = beerService.saveNewBeer(beer);
@@ -56,25 +54,19 @@ public class BeerController {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Location", BEER_PATH + "/" + savedBeer.getId().toString());
 
-            return new ResponseEntity(headers, HttpStatus.CREATED);
-        }
-
-    @GetMapping(value = BEER_PATH)
-    public List<BeerDTO> beerList() {
-        return beerService.listBeers();
+        return new ResponseEntity(headers, HttpStatus.CREATED);
     }
 
-//    @ExceptionHandler(NotFoundException.class)
-//    public ResponseEntity handleNotFoundException() {
-//        return ResponseEntity.notFound().build();
-//    }
+    @GetMapping(value = BEER_PATH)
+    public List<BeerDTO> listBeers() {
+        return beerService.listBeers();
+    }
 
     @GetMapping(value = BEER_PATH_ID)
     public BeerDTO getBeerById(@PathVariable("beerId") UUID beerId) {
 
-        log.debug("Get Beer by Id - in controller - 1234");
+        log.debug("Get Beer by Id - in controller");
 
         return beerService.getBeerById(beerId).orElseThrow(NotFoundException::new);
-//        return beerService.getBeerById(beerId).orElseThrow(() -> new NotFoundException("Beer not found"));
     }
 }

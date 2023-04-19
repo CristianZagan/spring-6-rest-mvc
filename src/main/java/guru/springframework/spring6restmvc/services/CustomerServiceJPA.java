@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -18,8 +19,8 @@ public class CustomerServiceJPA implements CustomerService {
     private final CustomerMapper customerMapper;
 
     @Override
-    public CustomerDTO getCustomerById(UUID uuid) {
-        return null;
+    public Optional<CustomerDTO> getCustomerById(UUID uuid) {
+        return Optional.empty();
     }
 
     @Override
