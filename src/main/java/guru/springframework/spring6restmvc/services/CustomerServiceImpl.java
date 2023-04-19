@@ -7,9 +7,6 @@ import org.springframework.util.StringUtils;
 import java.time.LocalDateTime;
 import java.util.*;
 
-
-
-
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
@@ -18,7 +15,7 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerServiceImpl() {
         CustomerDTO customer1 = CustomerDTO.builder()
                 .id(UUID.randomUUID())
-                .name("Customer1")
+                .name("Customer 1")
                 .version(1)
                 .createdDate(LocalDateTime.now())
                 .updateDate(LocalDateTime.now())
@@ -47,23 +44,29 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void patchCustomerById(UUID customerId, CustomerDTO customer) {
-        CustomerDTO existing = customerMap.get(customerId);
+    public Optional<CustomerDTO> patchCustomerById(UUID customerId, CustomerDTO customer) {
+        CustomerDTO existingCustomer = customerMap.get(customerId);
 
         if (StringUtils.hasText(customer.getName())) {
-            existing.setName(customer.getName());
+            existingCustomer.setName(customer.getName());
         }
+
+        return Optional.of(existingCustomer);
     }
 
     @Override
-    public void deleteCustomerById(UUID customerId) {
+    public Boolean deleteCustomerById(UUID customerId) {
         customerMap.remove(customerId);
+
+        return true;
     }
 
     @Override
-    public void updateCustomerById(UUID customerId, CustomerDTO customer) {
-        CustomerDTO existing = customerMap.get(customerId);
-        existing.setName(customer.getName());
+    public Optional<CustomerDTO> updateCustomerById(UUID customerId, CustomerDTO customer) {
+        CustomerDTO existingCustomer = customerMap.get(customerId);
+        existingCustomer.setName(customer.getName());
+
+        return Optional.of(existingCustomer);
     }
 
     @Override
