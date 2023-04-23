@@ -1,4 +1,8 @@
 
+    drop table if exists beerl;
+
+    drop table if exists customer;
+
     create table beer (
        id varchar(36) not null,
         beer_name varchar(50) not null,
