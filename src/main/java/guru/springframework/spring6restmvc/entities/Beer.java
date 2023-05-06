@@ -21,8 +21,8 @@ import java.util.UUID;
 @Setter
 @Builder
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Beer {
 
     @Id
@@ -35,8 +35,8 @@ public class Beer {
     @Version
     private Integer version;
 
-    @NotBlank
     @NotNull
+    @NotBlank
     @Size(max = 50)
     @Column(length = 50)
     private String beerName;
