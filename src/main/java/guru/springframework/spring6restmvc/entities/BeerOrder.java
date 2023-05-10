@@ -16,9 +16,21 @@ import java.util.UUID;
 @Setter
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
+
 @Builder
 public class BeerOrder {
+
+    public BeerOrder(UUID id, Long version, Timestamp createdDate, Timestamp lastModifiedDate, String customerRef,
+                     Customer customer, Set<BeerOrderLine> beerOrderLines, BeerOrderShipment beerOrderShipment) {
+        this.id = id;
+        this.version = version;
+        this.createdDate = createdDate;
+        this.lastModifiedDate = lastModifiedDate;
+        this.customerRef = customerRef;
+        this.setCustomer(customer);
+        this.beerOrderLines = beerOrderLines;
+        this.setBeerOrderShipment(beerOrderShipment);
+    }
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -49,6 +61,19 @@ public class BeerOrder {
     @ManyToOne
     private Customer customer;
 
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+        customer.getBeerOrders().add(this);
+    }
+
+    private void setBeerOrderShipment(BeerOrderShipment beerOrderShipment) {
+        this.beerOrderShipment = beerOrderShipment;
+        beerOrderShipment.setBeerOrder(this);
+    }
+
     @OneToMany(mappedBy = "beerOrder")
     private Set<BeerOrderLine> beerOrderLines;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private BeerOrderShipment beerOrderShipment;
 }
